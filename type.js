@@ -7,7 +7,7 @@ module.exports = {
     },
     water: {
         isSuperEffectiveTo: (type) => type.toString() === 'fire',
-        isNotEffectiveTo: (types) => _.isEqual(types.map((type) => type.toString()) , ['grass', 'water']),
+        isNotEffectiveTo: (types) => _.every(types, type => _.includes(['grass', 'water'], type.toString())),
         toString: () => 'water'
     },
     grass: {

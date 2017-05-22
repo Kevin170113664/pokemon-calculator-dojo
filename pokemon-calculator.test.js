@@ -7,6 +7,7 @@ describe('type weakness', function () {
         const grass = type.grass;
 
         assert.equal(water.isNotEffectiveTo([grass, water]), true);
+        assert.equal(water.isNotEffectiveTo([water, grass]), true);
     });
 
     it('should be super effective to water type when move is grass type', function () {
