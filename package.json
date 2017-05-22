@@ -1,0 +1,8 @@
+{
+  "scripts": {
+    "test": "mocha pokemon-calculator.test.js"
+  },
+  "devDependencies": {
+    "mocha": "^3.4.1"
+  }
+}
