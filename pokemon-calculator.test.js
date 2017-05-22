@@ -15,4 +15,11 @@ describe('type weakness', function () {
 
         assert.equal(water.isWeakTo(grass), true);
     });
+
+    it('should weak to fire when type is grass', function () {
+        const grass = type.grass;
+        const fire = type.fire;
+
+        assert.equal(grass.isWeakTo(fire), true);
+    });
 });

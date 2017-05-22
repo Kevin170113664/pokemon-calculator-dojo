@@ -12,6 +12,9 @@ module.exports = {
         }
     },
     grass: {
-        name: 'grass'
+        name: 'grass',
+        isWeakTo: function (type) {
+            return type.name === 'fire'
+        }
     }
 };
