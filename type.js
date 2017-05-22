@@ -1,20 +1,22 @@
+const weaknessCheck = function (type, targetType) {
+    targetType = targetType.toString() || targetType;
+
+    return type === 'fire' && targetType === 'water'
+        || type === 'water' && targetType === 'grass'
+        || type === 'grass' && targetType === 'fire'
+};
+
 module.exports = {
     fire: {
-        name: 'fire',
-        isWeakTo: function (type) {
-            return type.name === 'water'
-        }
+        isWeakTo: (type) => weaknessCheck('fire', type),
+        toString: () => 'fire'
     },
     water: {
-        name: 'water',
-        isWeakTo: function (type) {
-            return type.name === 'grass'
-        }
+        isWeakTo: (type) => weaknessCheck('water', type),
+        toString: () => 'water'
     },
     grass: {
-        name: 'grass',
-        isWeakTo: function (type) {
-            return type.name === 'fire'
-        }
+        isWeakTo: (type) => weaknessCheck('grass', type),
+        toString: () => 'grass'
     }
 };
