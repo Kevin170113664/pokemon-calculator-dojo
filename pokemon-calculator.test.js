@@ -22,4 +22,25 @@ describe('type weakness', function () {
 
         assert.equal(grass.isWeakTo(fire), true);
     });
+
+    it('should be super effective to water type when move is grass type', function () {
+        const grass = type.grass;
+        const water = type.water;
+
+        assert.equal(grass.isSuperEffectiveTo(water), true);
+    });
+
+    it('should be super effective to fire type when move is water type', function () {
+        const fire = type.fire;
+        const water = type.water;
+
+        assert.equal(water.isSuperEffectiveTo(fire), true);
+    });
+
+    it('should be super effective to grass type when move is fire type', function () {
+        const fire = type.fire;
+        const grass = type.grass;
+
+        assert.equal(fire.isSuperEffectiveTo(grass), true);
+    });
 });
