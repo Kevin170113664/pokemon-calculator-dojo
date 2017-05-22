@@ -1,8 +1,8 @@
 const assert = require('assert');
 const type = require('./type');
 
-describe('type weakness', function () {
-    it('should be not effective to water or grass type when move is water type', function () {
+describe('move effect checker', function () {
+    it('should not be effective to water or grass type when move is water type', function () {
         const water = type.water;
         const grass = type.grass;
 
@@ -10,7 +10,7 @@ describe('type weakness', function () {
         assert.equal(water.isNotEffectiveTo([water, grass]), true);
     });
 
-    it('should be not effective to fire or water type when move is fire type', function () {
+    it('should not be effective to fire or water type when move is fire type', function () {
         const water = type.water;
         const fire = type.fire;
 
@@ -18,7 +18,7 @@ describe('type weakness', function () {
         assert.equal(fire.isNotEffectiveTo([water, fire]), true);
     });
 
-    it('should be not effective to grass or fire type when move is grass type', function () {
+    it('should not be effective to grass or fire type when move is grass type', function () {
         const grass = type.grass;
         const fire = type.fire;
 
