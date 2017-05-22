@@ -6,6 +6,12 @@ module.exports = {
         }
     },
     water: {
-        name: 'water'
+        name: 'water',
+        isWeakTo: function (type) {
+            return type.name === 'grass'
+        }
+    },
+    grass: {
+        name: 'grass'
     }
 };
