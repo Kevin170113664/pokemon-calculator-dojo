@@ -1,24 +1,16 @@
-const weaknessCheck = function (type, targetType) {
-    targetType = targetType.toString() || targetType;
-
-    return type === 'fire' && targetType === 'water'
-        || type === 'water' && targetType === 'grass'
-        || type === 'grass' && targetType === 'fire'
-};
+const _ = require('lodash');
 
 module.exports = {
     fire: {
-        isWeakTo: (type) => weaknessCheck('fire', type),
         isSuperEffectiveTo: (type) => type.toString() === 'grass',
         toString: () => 'fire'
     },
     water: {
-        isWeakTo: (type) => weaknessCheck('water', type),
         isSuperEffectiveTo: (type) => type.toString() === 'fire',
+        isNotEffectiveTo: (types) => _.isEqual(types.map((type) => type.toString()) , ['grass', 'water']),
         toString: () => 'water'
     },
     grass: {
-        isWeakTo: (type) => weaknessCheck('grass', type),
         isSuperEffectiveTo: (type) => type.toString() === 'water',
         toString: () => 'grass'
     }
