@@ -5,9 +5,16 @@ module.exports = {
         return {
             types,
             getWeakness: () => {
-                let weakness = {};
-                _.each(types, type => Object.assign(weakness, type.weakness));
-                return weakness
+                const defenceFactors = _.map(types, type => {
+                    if (_.isEmpty(type.resistance) || _.isEmpty(type.weakness))return {};
+                    return Object.assign(type.resistance, type.weakness);
+                });
+
+                const defenceFactor = _.mergeWith(defenceFactors[0], defenceFactors[1], (objFactor, srcFactor) =>
+                    (_.isNumber(objFactor) ? objFactor : 1) * (_.isNumber(srcFactor) ? srcFactor : 1)
+                );
+
+                return _.pickBy(defenceFactor, factor => factor > 1)
             }
         }
     }

@@ -25,4 +25,10 @@ describe('weakness calculator', function () {
         invalidPokemon = pokemon({});
         assert.deepEqual(invalidPokemon.getWeakness(), {})
     });
+
+    it('should calculate weakness for composite types pokemon', function () {
+        const charizard = pokemon([type.fire, type.flying]);
+
+        assert.deepEqual(charizard.getWeakness(), {water: 2, rock: 4, electric: 2})
+    });
 });
