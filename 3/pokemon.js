@@ -1,7 +1,7 @@
 const _ = require('lodash');
 
 module.exports = {
-    pokemon: (types) => {
+    pokemon: types => {
         return {
             types,
             getWeakness: () => {
@@ -10,11 +10,12 @@ module.exports = {
                     return Object.assign(type.resistance, type.weakness);
                 });
 
+                const DEFAULT_FACTOR = 1;
                 const defenceFactor = _.mergeWith(defenceFactors[0], defenceFactors[1], (objFactor, srcFactor) =>
-                    (_.isNumber(objFactor) ? objFactor : 1) * (_.isNumber(srcFactor) ? srcFactor : 1)
+                    (_.isNumber(objFactor) ? objFactor : DEFAULT_FACTOR) * (_.isNumber(srcFactor) ? srcFactor : DEFAULT_FACTOR)
                 );
 
-                return _.pickBy(defenceFactor, factor => factor > 1)
+                return _.pickBy(defenceFactor, factor => factor > DEFAULT_FACTOR)
             }
         }
     }
