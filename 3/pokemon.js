@@ -6,9 +6,7 @@ module.exports = {
             types,
             getWeakness: () => {
                 let weakness = {};
-
                 _.each(types, type => Object.assign(weakness, type.weakness));
-
                 return weakness
             }
         }
