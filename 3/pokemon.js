@@ -46,8 +46,8 @@ module.exports = {
             getWeakness: (isReverse = false) => {
                 return calculateDefenceFactor({types, isWeakness: true, isReverse});
             },
-            getResistance: () => {
-                return calculateDefenceFactor({types, isResistance: true});
+            getResistance: (isReverse = false) => {
+                return calculateDefenceFactor({types, isResistance: true, isReverse});
             }
         }
     }
