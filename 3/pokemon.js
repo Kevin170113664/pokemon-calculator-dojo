@@ -1,9 +1,17 @@
 const _ = require('lodash');
 
-const calculateDefenceFactor = ({types, isWeakness, isResistance}) => {
+const calculateDefenceFactor = ({types, isWeakness, isResistance, isReverse}) => {
     const defenceFactors = _.map(types, type => {
         if (_.isEmpty(type.resistance) || _.isEmpty(type.weakness))return {};
-        return Object.assign({}, type.resistance, type.weakness);
+
+        let resistance = type.resistance;
+        let weakness = type.weakness;
+        if (isReverse) {
+            resistance = reverse(type.resistance);
+            weakness = reverse(type.weakness)
+        }
+
+        return Object.assign({}, resistance, weakness);
     });
 
     const DEFAULT_FACTOR = 1;
@@ -18,12 +26,25 @@ const calculateDefenceFactor = ({types, isWeakness, isResistance}) => {
     }
 };
 
+const reverse = defenceFactor => {
+    const reverseMapping = {
+        0: 2,
+        0.5: 2,
+        1: 1,
+        2: 0.5
+    };
+
+    const reverseFactor = {};
+    _.each(defenceFactor, (factor, type) => reverseFactor[type] = reverseMapping[factor]);
+    return reverseFactor
+};
+
 module.exports = {
     pokemon: types => {
         return {
             types,
-            getWeakness: () => {
-                return calculateDefenceFactor({types, isWeakness: true});
+            getWeakness: (isReverse = false) => {
+                return calculateDefenceFactor({types, isWeakness: true, isReverse});
             },
             getResistance: () => {
                 return calculateDefenceFactor({types, isResistance: true});
