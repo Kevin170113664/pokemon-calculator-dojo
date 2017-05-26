@@ -1,4 +1,4 @@
-// const _ = require('lodash');
+const _ = require('lodash');
 
 const calculateDefenceFactor = ({types, isWeakness, isResistance, isReverse}) => {
     const defenceFactors = _.map(types, type => {
@@ -49,6 +49,6 @@ const pokemon = types => {
             return calculateDefenceFactor({types, isResistance: true, isReverse});
         }
     }
-}
+};
 
-// module.exports = {pokemon}
+module.exports = {pokemon};

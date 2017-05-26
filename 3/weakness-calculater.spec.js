@@ -1,4 +1,5 @@
 const assert = require('assert');
+const _ = require('lodash');
 const {type} = require('./pokemon-type');
 const {pokemon} = require('./pokemon');
 
@@ -64,4 +65,53 @@ describe('weakness calculator', function () {
 
         assert.deepEqual(charizard.getResistance(true), {water: 0.5, rock: 0.25, electric: 0.5})
     });
+
+    it('should calculate weakness for all composite types pokemon', function () {
+        const pokemons = [];
+        _.map(type, (type1, type1Name) => {
+            _.map(type, (type2, type2Name) => {
+                if (type1Name !== type2Name && !_.find(pokemons, pokemon => _.isEmpty(_.difference(pokemon.types, [type1, type2])))) {
+                    pokemons.push(pokemon([type1, type2]))
+                }
+            })
+        });
+
+        const resistance = _.chain(pokemons)
+            .map(pokemon => {
+                return {
+                    types: [pokemon.types[0].name, pokemon.types[1].name],
+                    weakness: _.values(pokemon.getWeakness()).length
+                }
+            })
+            .sortBy('weakness')
+            .reverse()
+            .value();
+
+        console.log(resistance)
+    });
+
+    it('should calculate resistance for all composite types pokemon', function () {
+        const pokemons = [];
+        _.map(type, (type1, type1Name) => {
+            _.map(type, (type2, type2Name) => {
+                if (type1Name !== type2Name && !_.find(pokemons, pokemon => _.isEmpty(_.difference(pokemon.types, [type1, type2])))) {
+                    pokemons.push(pokemon([type1, type2]))
+                }
+            })
+        });
+
+        const resistance = _.chain(pokemons)
+            .map(pokemon => {
+                return {
+                    types: [pokemon.types[0].name, pokemon.types[1].name],
+                    resistance: _.values(pokemon.getResistance()).length
+                }
+            })
+            .sortBy('resistance')
+            .reverse()
+            .value();
+
+        console.log(resistance)
+    });
+
 });

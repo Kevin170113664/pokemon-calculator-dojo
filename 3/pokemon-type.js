@@ -243,6 +243,6 @@ const type = {
             poison: 2
         }
     }
-}
+};
 
-// module.exports = {type}
+module.exports = {type};
