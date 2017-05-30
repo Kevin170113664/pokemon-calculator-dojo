@@ -3,18 +3,25 @@ const _ = require('lodash')
 const pokemon = (...types) => {
   return {
     getWeakness: () => {
-      let defenceFactor = _.mergeWith(Object.assign({}, types[0].weakness, types[0].resistance), Object.assign({}, types[1].weakness, types[1].resistance), (objective, source) => {
-        let objectiveFactor = (_.isNumber(objective) ? objective : 1 );
-        let sourceFactor = (_.isNumber(source) ? source : 1 );
+      let defaultFactor = 1;
+
+      let getDefenceFactor = (type) => {
+        if (!type) return {}
+        return Object.assign({}, type.weakness, type.resistance);
+      };
+
+      let defenceFactor = _.mergeWith(getDefenceFactor(types[0]), getDefenceFactor(types[1]), (objective, source) => {
+        let objectiveFactor = (_.isNumber(objective) ? objective : defaultFactor);
+        let sourceFactor = (_.isNumber(source) ? source : defaultFactor);
         return objectiveFactor * sourceFactor
       });
 
       return _.pickBy(defenceFactor, value => {
-        return value > 1
+        return value > defaultFactor
       })
     },
     getResistance: () => {
-      return type.resistance
+      return types[0].resistance
     }
   }
 }
