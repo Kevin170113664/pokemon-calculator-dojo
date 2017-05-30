@@ -39,8 +39,8 @@ const pokemon = (...types) => {
         return value > defaultFactor
       })
     },
-    getResistance: () => {
-      return _.pickBy(defenceFactor(types), value => {
+    getResistance: (reverse = false) => {
+      return _.pickBy(defenceFactor(types, reverse), value => {
         return value < defaultFactor
       })
     }
