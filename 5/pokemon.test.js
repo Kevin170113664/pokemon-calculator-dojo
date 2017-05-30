@@ -48,6 +48,20 @@ describe('pokemon calculator', () => {
 
   it('should not calculate weakness when type is invalid', function () {
     let somePokemon = pokemon()
+    assert.deepEqual(somePokemon.getWeakness(), {})
+
+    somePokemon = pokemon(undefined)
+    assert.deepEqual(somePokemon.getWeakness(), {})
+
+    somePokemon = pokemon(null)
+    assert.deepEqual(somePokemon.getWeakness(), {})
+
+    somePokemon = pokemon('some string')
+    assert.deepEqual(somePokemon.getWeakness(), {})
+  });
+
+  it('should not calculate resistance when type is invalid', function () {
+    let somePokemon = pokemon()
     assert.deepEqual(somePokemon.getResistance(), {})
 
     somePokemon = pokemon(undefined)
