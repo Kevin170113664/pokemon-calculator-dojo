@@ -31,4 +31,18 @@ describe('pokemon calculator', () => {
       water: 2
     })
   });
+
+  it('should calculate composite type pokemon resistance', function () {
+    const Charizard = pokemon(type.fire, type.flying)
+
+    assert.deepEqual(Charizard.getResistance(), {
+      ground: 0,
+      fire: 0.5,
+      fighting: 0.5,
+      bug: 0.25,
+      grass: 0.25,
+      fairy: 0.5,
+      steel: 0.5,
+    })
+  });
 });
