@@ -1,4 +1,4 @@
-const _ = require('lodash')
+const _ = require('lodash');
 
 let defaultFactor = 1;
 const defenceFactor = (types, reverse = false) => {
@@ -8,17 +8,17 @@ const defenceFactor = (types, reverse = false) => {
     0: 2,
     1: 1,
     2: 0.5
-  }
+  };
 
   let getDefenceFactor = (type) => {
-    if (!type) return {}
+    if (!type) return {};
 
     if (reverse) {
       const reverseFactor = defenceFactor => {
-        const newFactor = {}
-        _.each(defenceFactor, (factor, type) => newFactor[type] = reverseMapping[factor])
+        const newFactor = {};
+        _.each(defenceFactor, (factor, type) => newFactor[type] = reverseMapping[factor]);
         return newFactor
-      }
+      };
       return Object.assign({}, reverseFactor(type.weakness), reverseFactor(type.resistance))
     }
 
@@ -30,7 +30,7 @@ const defenceFactor = (types, reverse = false) => {
     let sourceFactor = (_.isNumber(source) ? source : defaultFactor);
     return objectiveFactor * sourceFactor
   });
-}
+};
 
 const pokemon = (...types) => {
   return {
@@ -45,6 +45,6 @@ const pokemon = (...types) => {
       })
     }
   }
-}
+};
 
-module.exports = {pokemon}
+module.exports = {pokemon};
