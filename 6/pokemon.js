@@ -15,7 +15,7 @@ const getDefenceFactor = (types, reverse) => {
     return newDefenceFactor
   }
 
-  const getDefenceFactor = type => {
+  const getSingleTypeDefenceFactor = type => {
     if (!type) return {}
 
     if (reverse) {
@@ -25,10 +25,10 @@ const getDefenceFactor = (types, reverse) => {
     return Object.assign({}, type.resistance, type.weakness)
   }
 
-  return _.mergeWith(getDefenceFactor(types[0]), getDefenceFactor(types[1]), (obj, src) => {
-    obj = (_.isNumber(obj) ? obj : defaultFactor);
-    src = (_.isNumber(src) ? src : defaultFactor);
-    return obj * src
+  return _.mergeWith(getSingleTypeDefenceFactor(types[0]), getSingleTypeDefenceFactor(types[1]), (firstFactor, secondFactor) => {
+    firstFactor = (_.isNumber(firstFactor) ? firstFactor : defaultFactor);
+    secondFactor = (_.isNumber(secondFactor) ? secondFactor : defaultFactor);
+    return firstFactor * secondFactor
   });
 };
 
