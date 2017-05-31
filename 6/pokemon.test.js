@@ -39,4 +39,17 @@ describe('pokemon calculator', () => {
       steel: 0.5
     })
   });
+
+  it('should calculate composite type pokemon weakness in reverse battle', function () {
+    const Charizard = pokemon(type.fire, type.flying)
+
+    assert.deepEqual(Charizard.getWeakness(true), {
+      grass: 4,
+      bug: 4,
+      fighting: 2,
+      fire: 2,
+      fairy: 2,
+      steel: 2
+    })
+  });
 });
