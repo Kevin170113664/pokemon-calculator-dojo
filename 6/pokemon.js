@@ -37,8 +37,8 @@ const pokemon = (...types) => {
     getWeakness: (reverse = false) => {
       return _.pickBy(getDefenceFactor(types, reverse), value => value > defaultFactor)
     },
-    getResistance: () => {
-      return _.pickBy(getDefenceFactor(types), value => value < defaultFactor)
+    getResistance: (reverse = false) => {
+      return _.pickBy(getDefenceFactor(types, reverse), value => value < defaultFactor)
     }
   }
 }
