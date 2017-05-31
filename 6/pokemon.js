@@ -1,6 +1,6 @@
 const _ = require('lodash')
 
-const defaultFactor = 1;
+const defaultFactor = 1
 const reverseFactorMapping = {
   0: 2,
   2: 0.5,
@@ -26,11 +26,11 @@ const getDefenceFactor = (types, reverse) => {
   }
 
   return _.mergeWith(getSingleTypeDefenceFactor(types[0]), getSingleTypeDefenceFactor(types[1]), (firstFactor, secondFactor) => {
-    firstFactor = (_.isNumber(firstFactor) ? firstFactor : defaultFactor);
-    secondFactor = (_.isNumber(secondFactor) ? secondFactor : defaultFactor);
+    firstFactor = _.isNumber(firstFactor) ? firstFactor : defaultFactor
+    secondFactor = _.isNumber(secondFactor) ? secondFactor : defaultFactor
     return firstFactor * secondFactor
-  });
-};
+  })
+}
 
 const pokemon = (...types) => {
   return {
