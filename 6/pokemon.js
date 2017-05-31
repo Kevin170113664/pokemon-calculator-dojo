@@ -4,6 +4,7 @@ const pokemon = (...types) => {
   return {
     getWeakness: () => {
       const defenceFactor = type => {
+        if (!type) return {}
         return Object.assign({}, type.resistance, type.weakness)
       }
 
@@ -16,7 +17,7 @@ const pokemon = (...types) => {
       return _.pickBy(defence, value => value > 1)
     },
     getResistance: () => {
-      return type.resistance
+      return types[0].resistance
     }
   }
 }
