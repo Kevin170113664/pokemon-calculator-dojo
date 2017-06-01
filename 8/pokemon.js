@@ -1,8 +1,26 @@
 const _ = require('lodash')
 
-const getDefence = types => {
+const getDefence = (types, reverse) => {
   const getSingleTypeDefence = function (type) {
     if (!type) return {}
+
+    const reverseMapping = {
+      0.5: 2,
+      2: 0.5,
+      0: 2,
+      1: 1
+    }
+
+    const reverseFactor = defenceFactor => {
+      const newFactor = {}
+      _.each(defenceFactor, (factor, type) => newFactor[type] = reverseMapping[factor])
+      return newFactor
+    }
+
+    if (reverse) {
+      return Object.assign({}, reverseFactor(type.weakness), reverseFactor(type.resistance))
+    }
+
     return Object.assign({}, type.weakness, type.resistance)
   }
 
@@ -15,8 +33,8 @@ const getDefence = types => {
 
 const pokemon = (...types) => {
   return {
-    getWeakness: () => {
-      return _.pickBy(getDefence(types), factor => factor > 1)
+    getWeakness: (reverse = false) => {
+      return _.pickBy(getDefence(types, reverse), factor => factor > 1)
     },
     getResistance: () => {
       return _.pickBy(getDefence(types), factor => factor < 1)
