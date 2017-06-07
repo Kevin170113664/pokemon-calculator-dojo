@@ -4,7 +4,7 @@ const {type} = require('./pokemon-type')
 
 describe('pokemon calculator', () => {
 
-  it('should calculate single type pokemon weakness', function () {
+  it('should calculate single type pokemon weakness', () => {
     const Pikachu = pokemon(type.electric)
     assert.deepEqual(Pikachu.getWeakness(), {ground: 2})
 
@@ -12,7 +12,7 @@ describe('pokemon calculator', () => {
     assert.deepEqual(Eevee.getWeakness(), {fighting: 2})
   });
 
-  it('should calculate single type pokemon resistance', function () {
+  it('should calculate single type pokemon resistance', () => {
     const Pikachu = pokemon(type.electric)
     assert.deepEqual(Pikachu.getResistance(), {electric: 0.5, flying: 0.5, steel: 0.5})
 
@@ -20,13 +20,13 @@ describe('pokemon calculator', () => {
     assert.deepEqual(Eevee.getResistance(), {ghost: 0})
   });
 
-  it('should calculate composite types pokemon weakness', function () {
+  it('should calculate composite types pokemon weakness', () => {
     const Charizard = pokemon(type.fire, type.flying)
 
     assert.deepEqual(Charizard.getWeakness(), {rock: 4, electric: 2, water: 2})
   });
 
-  it('should calculate composite types pokemon resistance', function () {
+  it('should calculate composite types pokemon resistance', () => {
     const Charizard = pokemon(type.fire, type.flying)
 
     assert.deepEqual(Charizard.getResistance(), {
@@ -40,7 +40,7 @@ describe('pokemon calculator', () => {
     })
   });
 
-  it('should calculate composite types pokemon weakness in reverse battle', function () {
+  it('should calculate composite types pokemon weakness in reverse battle', () => {
     const Charizard = pokemon(type.fire, type.flying)
 
     assert.deepEqual(Charizard.getReverseWeakness(), {
@@ -53,7 +53,7 @@ describe('pokemon calculator', () => {
     })
   });
 
-  it('should calculate composite types pokemon resistance in reverse battle', function () {
+  it('should calculate composite types pokemon resistance in reverse battle', () => {
     const Charizard = pokemon(type.fire, type.flying)
 
     assert.deepEqual(Charizard.getReverseResistance(), {
