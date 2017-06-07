@@ -10,7 +10,7 @@ describe('pokemon calculator', () => {
 
     const Eevee = pokemon(type.normal)
     assert.deepEqual(Eevee.getWeakness(), {fighting: 2})
-  });
+  })
 
   it('should calculate single type pokemon resistance', () => {
     const Pikachu = pokemon(type.electric)
@@ -18,13 +18,13 @@ describe('pokemon calculator', () => {
 
     const Eevee = pokemon(type.normal)
     assert.deepEqual(Eevee.getResistance(), {ghost: 0})
-  });
+  })
 
   it('should calculate composite types pokemon weakness', () => {
     const Charizard = pokemon(type.fire, type.flying)
 
     assert.deepEqual(Charizard.getWeakness(), {rock: 4, electric: 2, water: 2})
-  });
+  })
 
   it('should calculate composite types pokemon resistance', () => {
     const Charizard = pokemon(type.fire, type.flying)
@@ -38,7 +38,7 @@ describe('pokemon calculator', () => {
       fairy: 0.5,
       fire: 0.5
     })
-  });
+  })
 
   it('should calculate composite types pokemon weakness in reverse battle', () => {
     const Charizard = pokemon(type.fire, type.flying)
@@ -51,7 +51,7 @@ describe('pokemon calculator', () => {
       fairy: 2,
       fire: 2
     })
-  });
+  })
 
   it('should calculate composite types pokemon resistance in reverse battle', () => {
     const Charizard = pokemon(type.fire, type.flying)
@@ -61,5 +61,5 @@ describe('pokemon calculator', () => {
       electric: 0.5,
       water: 0.5
     })
-  });
-});
+  })
+})
