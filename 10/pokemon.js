@@ -1,7 +1,7 @@
 const _ = require('lodash')
 
 const defaultFactor = 1
-let getDefenceFactor = function (types, isReverse = false) {
+let getDefenceFactor = (types, isReverse = false) => {
   let _getSingleTypeDefenceFactor = (type) => {
     if (!type) return {}
     const reverseMapping = {
