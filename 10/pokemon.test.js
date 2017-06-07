@@ -52,4 +52,14 @@ describe('pokemon calculator', () => {
       fire: 2
     })
   });
+
+  it('should calculate composite types pokemon resistance in reverse battle', function () {
+    const Charizard = pokemon(type.fire, type.flying)
+
+    assert.deepEqual(Charizard.getReverseResistance(), {
+      rock: 0.25,
+      electric: 0.5,
+      water: 0.5
+    })
+  });
 });
